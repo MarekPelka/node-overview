@@ -1,0 +1,29 @@
+.main-table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.mdl-layout__drawer {
+    display: block;
+    margin-right: auto;
+}
+
+.demo-card-square.mdl-card.card-high {
+    height: 320px;
+}
+
+.demo-card-square.mdl-card {
+    display: inline-flex;
+    width: 320px;
+    height: 280px;
+    margin: 10px;
+}
+
+.demo-card-square>.mdl-card__title {
+    color: #fff;
+}
+
+.mdl-textfield {
+    width: 100%;
+}

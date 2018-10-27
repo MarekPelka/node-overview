@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  script(src='/javascripts/list.min.js')
+  script(src='/javascripts/client.js')
+  
+  table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.main-table(id="mainTable")
+    thead
+      tr
+        th.mdl-data-table__cell--non-numeric(class="sort" data-sort="material") Material
+        th(class="sort" data-sort="quantity") Quantity
+        th(class="sort" data-sort="price") Unit price
+      tr
+        th
+          .mdl-textfield.mdl-js-textfield
+            input#materialInput.mdl-textfield__input(class="search" data-search-type='material')
+            label.mdl-textfield__label(for='materialInput') Material...
+          //- input(type="text" class="fuzzy-search")
+        th
+          .mdl-textfield.mdl-js-textfield
+            input#quantityInput.mdl-textfield__input(class="search" data-search-type='quantity')
+            label.mdl-textfield__label(for='quantityInput') Quantity...
+        th
+          .mdl-textfield.mdl-js-textfield
+            input#priceInput.mdl-textfield__input(class="search" data-search-type='price')
+            label.mdl-textfield__label(for='priceInput') Price...
+    tbody(class="list")
+      each val in list ? list : ['There are no values']
+        tr
+          td.mdl-data-table__cell--non-numeric(class="material")= val.material
+          td(class="quantity")= val.quantity
+          td(class="price")= '$' + val.price
+      

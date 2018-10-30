@@ -1,7 +1,17 @@
+.page-content {
+    padding-top: 56px
+}
+
 .main-table {
     margin-left: auto;
     margin-right: auto;
-    width: 75%;
+    width: 90%;
+    /* width: 100%;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis; */
 }
 
 .mdl-layout__drawer {
@@ -24,6 +34,16 @@
     color: #fff;
 }
 
+.mdl-data-table__cell--non-numeric {
+    max-width: 500px;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+}
+
 .mdl-textfield {
     width: 100%;
+    /* min-width: 30px; */
 }

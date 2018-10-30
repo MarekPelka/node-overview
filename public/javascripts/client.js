@@ -10,11 +10,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Later for dynamic columns
     var columnsNumber = document.getElementById(table).rows[0].cells.length
+    console.log(columnsNumber)
 
-    var options = {
-            valueNames: ['material', 'quantity', 'price']
-        },
-        documentTable = new List(table, options);
+    var documentTable = new List(table, options);
 
     function search(e) {
         var curr = e.target;

@@ -3,31 +3,38 @@ extends layout
 block content
   script(src='/javascripts/list.min.js')
   script(src='/javascripts/client.js')
-  
+  //- TODO: fixme
+  script(type='text/javascript').
+    var options = {}
+    options.valueNames = []
+    var x = !{JSON.stringify(columns)}
+    x.forEach(function(cell) {
+        options.valueNames.push(cell.name)
+    })
+    console.log(options)
+    
   table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.main-table(id="mainTable")
     thead
       tr
-        th.mdl-data-table__cell--non-numeric(class="sort" data-sort="material") Material
-        th(class="sort" data-sort="quantity") Quantity
-        th(class="sort" data-sort="price") Unit price
+        each column in columns
+          if column.numeric
+            th(class="sort" data-sort=column.name)= column.name
+          else
+            th.mdl-data-table__cell--non-numeric(class="sort" data-sort=column.name)= column.name
       tr
-        th
-          .mdl-textfield.mdl-js-textfield
-            input#materialInput.mdl-textfield__input(class="search" data-search-type='material')
-            label.mdl-textfield__label(for='materialInput') Material...
-          //- input(type="text" class="fuzzy-search")
-        th
-          .mdl-textfield.mdl-js-textfield
-            input#quantityInput.mdl-textfield__input(class="search" data-search-type='quantity')
-            label.mdl-textfield__label(for='quantityInput') Quantity...
-        th
-          .mdl-textfield.mdl-js-textfield
-            input#priceInput.mdl-textfield__input(class="search" data-search-type='price')
-            label.mdl-textfield__label(for='priceInput') Price...
+        each column in columns
+          th
+            .mdl-textfield.mdl-js-textfield
+              input.mdl-textfield__input(id=column.name+"Input" class="search" data-search-type=column.name)
+              label.mdl-textfield__label(for=column.name+"Input")= column.name
+
     tbody(class="list")
-      each val in list ? list : ['There are no values']
+      each row in list ? list : ['There are no values']
         tr
-          td.mdl-data-table__cell--non-numeric(class="material")= val.material
-          td(class="quantity")= val.quantity
-          td(class="price")= '$' + val.price
+          each column in columns ? columns : ['There are no columns']
+            if column.numeric
+              td(class=column.name)= row[column.name]
+            else
+              td.mdl-data-table__cell--non-numeric(class=column.name)= row[column.name]
+
       
